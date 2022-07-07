@@ -1,0 +1,179 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.8.19",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "frame.001",
+            "rotation" : [
+                0.5,
+                -0.4999999701976776,
+                0.5000000596046448,
+                0.4999999403953552
+            ],
+            "translation" : [
+                98.39862060546875,
+                3.553573378667352e-06,
+                2.6611404418945312
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "3D_Oak_-_Semigloss.004",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8588240146636963,
+                    0.7450979948043823,
+                    0.6039220094680786,
+                    1
+                ],
+                "metallicFactor" : 0
+            }
+        },
+        {
+            "doubleSided" : true,
+            "name" : "3D_Oak_-_Semigloss.001",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8588240146636963,
+                    0.7450979948043823,
+                    0.6039220094680786,
+                    1
+                ],
+                "metallicFactor" : 0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "frame.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 3,
+                        "NORMAL" : 4
+                    },
+                    "indices" : 5,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 24,
+            "max" : [
+                5,
+                200,
+                0
+            ],
+            "min" : [
+                0,
+                0,
+                -250
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5123,
+            "count" : 36,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 4029,
+            "max" : [
+                15,
+                200,
+                0
+            ],
+            "min" : [
+                5,
+                0,
+                -250
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 4029,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5123,
+            "count" : 4488,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 288
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 72,
+            "byteOffset" : 576
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 48348,
+            "byteOffset" : 648
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 48348,
+            "byteOffset" : 48996
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 8976,
+            "byteOffset" : 97344
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 106320,
+            "uri" : "frame.bin"
+        }
+    ]
+}

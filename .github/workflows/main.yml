@@ -1,0 +1,22 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build_deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        run: yarn build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v1.1.0
+        env:
+          PUBLISH_DIR: dist
+          PUBLISH_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
