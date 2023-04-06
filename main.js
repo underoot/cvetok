@@ -1,13 +1,24 @@
 import './style.css'
 
-import * as THREE from 'three';
+import { Scene } from 'three/src/scenes/Scene';
+import { PerspectiveCamera } from 'three/src/cameras/PerspectiveCamera';
+import { WebGLRenderer } from 'three/src/renderers/WebGLRenderer';
+import { PointLight } from 'three/src/lights/PointLight';
+import { ImageBitmapLoader } from 'three/src/loaders/ImageBitmapLoader';
+import { PlaneGeometry } from 'three/src/geometries/PlaneGeometry';
+import { MeshPhongMaterial } from 'three/src/materials/MeshPhongMaterial';
+import { Mesh } from 'three/src/objects/Mesh';
+import { CanvasTexture } from 'three/src/textures/CanvasTexture';
+import { MeshBasicMaterial } from 'three/src/materials/MeshBasicMaterial';
+import { DoubleSide } from 'three/src/constants';
+
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 
 const PERSON_HEIGHT = 250;
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
+const scene = new Scene();
+const camera = new PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
@@ -16,9 +27,9 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(0, PERSON_HEIGHT);
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new WebGLRenderer();
 
-const pointLight = new THREE.PointLight(0xffffff, 1);
+const pointLight = new PointLight(0xffffff, 1);
 pointLight.position.set( 0, 500, 0 );
 scene.add( pointLight );
 
@@ -97,13 +108,13 @@ function animate(time) {
 
 async function start() {
   const loader = new GLTFLoader();
-  const imageLoader = new THREE.ImageBitmapLoader();
+  const imageLoader = new ImageBitmapLoader();
 
   imageLoader.setOptions( { imageOrientation: 'flipY' } );
 
-  const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(2000, 2000),
-    new THREE.MeshPhongMaterial({ color: 0xCC00FF, side: THREE.DoubleSide })
+  const floor = new Mesh(
+    new PlaneGeometry(2000, 2000),
+    new MeshPhongMaterial({ color: 0xCC00FF, side: DoubleSide })
   );
 
   floor.position.set(0, 0, 0);
@@ -112,9 +123,9 @@ async function start() {
   scene.add(floor);
 
   const walls = new Array(4).fill(null).map(() => (
-    new THREE.Mesh(
-      new THREE.PlaneGeometry(2000, 1000),
-      new THREE.MeshPhongMaterial({ color: 0xBBBBBB, side: THREE.DoubleSide })
+    new Mesh(
+      new PlaneGeometry(2000, 1000),
+      new MeshPhongMaterial({ color: 0xBBBBBB, side: DoubleSide })
     )
   ));
 
@@ -134,10 +145,10 @@ async function start() {
 
   const addPainting = async ({name, paintX, paintY, frameX, frameY, rotation = 0} = {}) => {
     const bitmap = await imageLoader.loadAsync(name);
-    const texture = new THREE.CanvasTexture(bitmap);
-    const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
-    const plane = new THREE.PlaneGeometry(160, 208);
-    const mesh = new THREE.Mesh(plane, material);
+    const texture = new CanvasTexture(bitmap);
+    const material = new MeshBasicMaterial({ map: texture, side: DoubleSide });
+    const plane = new PlaneGeometry(160, 208);
+    const mesh = new Mesh(plane, material);
 
     const frame = await loader.loadAsync('frame/frame.gltf');
 
