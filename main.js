@@ -24,9 +24,10 @@ scene.add( pointLight );
 
 renderer.setSize( window.innerWidth, window.innerHeight );
 
-window.addEventListener('resize', () => {
+window.addEventListener('resize', (e) => {
   renderer.setSize( window.innerWidth, window.innerHeight );
   camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 });
 
 document.body.appendChild( renderer.domElement );
@@ -37,24 +38,24 @@ document.body.addEventListener('click', () => {
   person.lock();
 });
 
+let moveKey = new Set();
+
+let targetKeyCodes = [87, 68, 83, 65];
+
 const onKeyDown = function (event) {
-  switch (event.code) {
-    case 'KeyW':
-      person.moveForward(10)
-      break
-    case 'KeyA':
-      person.moveRight(-10)
-      break
-    case 'KeyS':
-      person.moveForward(-10)
-      break
-    case 'KeyD':
-      person.moveRight(10)
-      break
+  if (!targetKeyCodes.includes(event.keyCode)) {
+    return;
   }
+
+  moveKey.add(event.keyCode);
+}
+
+const onKeyUp = function (event) {
+  moveKey.delete(event.keyCode);
 }
 
 document.addEventListener('keydown', onKeyDown, false)
+document.addEventListener('keyup', onKeyUp, false);
 
 function animate(time) {
   if (camera.position.z < -980) {
@@ -71,6 +72,23 @@ function animate(time) {
 
   if (camera.position.x < -980) {
     camera.position.x = -980;
+  }
+
+  for (const key of moveKey.values()) {
+    switch (key) {
+      case 87:
+        person.moveForward(10)
+        break
+      case 68:
+        person.moveRight(10)
+        break
+      case 83:
+        person.moveForward(-10)
+        break
+      case 65:
+        person.moveRight(-10)
+        break
+    }
   }
 
   renderer.render(scene, camera);
