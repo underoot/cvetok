@@ -27,6 +27,8 @@ const camera = new PerspectiveCamera(
 
 camera.position.set(0, PERSON_HEIGHT);
 
+scene.add(camera);
+
 const renderer = new WebGLRenderer();
 
 const pointLight = new PointLight(0xffffff, 1);
@@ -197,8 +199,6 @@ async function start() {
     paintY: 990,
     rotation: Math.PI
   });
-
-  scene.add(person.getObject());
 
   document.querySelector('#loading').textContent = '';
 
