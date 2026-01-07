@@ -31,7 +31,7 @@ scene.add(camera);
 
 const renderer = new WebGLRenderer();
 
-const pointLight = new PointLight(0xffffff, 1);
+const pointLight = new PointLight(0xffffff, 3);
 pointLight.position.set( 0, 500, 0 );
 scene.add( pointLight );
 
